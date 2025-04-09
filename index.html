@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Grist Widget</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        padding: 1rem;
+        background: #f0f0f0;
+      }
+      .card {
+        background: white;
+        padding: 1rem;
+        margin: 1rem 0;
+        border-radius: 12px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      }
+      .name {
+        font-size: 1.2rem;
+        font-weight: bold;
+      }
+      .email {
+        color: #555;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Contacts</h2>
+    <div id="cards"></div>
+
+    <script>
+      window.addEventListener("message", (event) => {
+        const data = event.data;
+        if (data && data.table) {
+          const records = data.table;
+          const container = document.getElementById("cards");
+          container.innerHTML = "";
+
+          for (let row of records) {
+            const div = document.createElement("div");
+            div.className = "card";
+            div.innerHTML = `
+              <div class="name">${row.Name || "Nom inconnu"}</div>
+              <div class="email">${row.Email || ""}</div>
+            `;
+            container.appendChild(div);
+          }
+        }
+      }, false);
+    </script>
+  </body>
+</html>
