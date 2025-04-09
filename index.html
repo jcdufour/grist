@@ -40,8 +40,8 @@
             const div = document.createElement("div");
             div.className = "card";
             div.innerHTML = `
-              <div class="name">${row.Name || "Nom inconnu"}</div>
-              <div class="email">${row.Email || ""}</div>
+              <div class="name">${row.Equipe || "Nom inconnu"}</div>
+              <div class="email">${row.Type || ""}</div>
             `;
             container.appendChild(div);
           }
